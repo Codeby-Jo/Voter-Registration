@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vote Mate</title>
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0;
+        background-image: url(Screenshot\ 2025-06-19\ 002117\ \(1\).png);
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+    }
+    .registration {
+        margin: 40px auto;
+        width: 500px;
+        padding: 16px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        background: #ffffff;
+    }
+    h1 {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 24px;
+        font-size: 1.875rem;
+        color: #4f46e5;
+    }
+    .common {
+        background: #f3f4f6;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 16px 0;
+        border: 1px solid #e2e8f0;
+        padding: 16px;
+        border-radius: 12px;
+    }
+    .radio-group {
+        background-color: #f3f4f6;
+        border-radius: 12px;
+        display: flex;                
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 12px;
+    }
+    .radio-group label {
+        font-weight: 500;
+    }
+    p {
+        font-weight: 600;
+        font-size: 1.125rem;
+        color: #4f46e5;
+        margin-bottom: 12px;
+        padding: 0 8px;
+    }
+    label {
+        color: #374151;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="file"],
+    select {
+        width: 100%;
+        margin-top: 6px;
+        padding: 10px 14px;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    .confirm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        background: #f9fafb;
+        padding: 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        margin-top: 12px;
+    }
+    .confirm h4 {
+        text-align: center;
+        color: #374151;
+        font-size: 1rem;
+    }
+    .sumbit {
+        background-color: #4f46e5;
+        color: white;
+        padding: 14px 24px;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+        margin-top: 16px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 1.125rem;
+        width: 100%;
+    }
+    footer {
+        background-color: #1e293b;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="registration">
+    <h1>Voter & Nominee Election Registration Form</h1>
+
+    <div class="user">
+      <p>User Type</p>
+    </div>
+    <div class="radio-group">
+      <label><input type="radio" name="userType" value="voter" required> Voter</label>
+      <label><input type="radio" name="userType" value="nominee" required> Nominee</label>
+    </div>
+
+    <p>Common Information</p>
+    <div class="common">
+      <label>Full Name</label>
+      <input type="text" id="fullName" name="fullName" autocomplete="name" required />
+
+      <label>Date Of Birth</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label>National ID Number</label>
+      <input type="text" id="nationalId" name="nationalId" required />
+
+      <label>Email Address</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <!-- Placeholder for voter-specific fields -->
+    <div id="voterFields" class="common" style="display: none;">
+      <label>Voting District</label>
+      <select id="votingDistrict" name="votingDistrict" required>
+        <option value="">Select District</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Tiruchirappalli">Tiruchirappalli</option>
+        <option value="Salem">Salem</option>
+        <option value="Tirunelveli">Tirunelveli</option>
+        <option value="Tiruppur">Tiruppur</option>
+        <option value="Erode">Erode</option>
+        <option value="Thoothukudi">Thoothukudi</option>
+        <option value="Vellore">Vellore</option>
+      </select>
+
+      <label>Preferred Voting Method</label>
+      <select id="votingMethod" required>
+        <option value="">Select</option>
+        <option value="In-person">In-person</option>
+        <option value="Postal">Postal</option>
+      </select>
+
+      <div id="postalGroup" style="display: none;">
+        <label>Postal Address</label>
+        <input type="text" id="postalAddress" />
+      </div>
+    </div>
+
+    <!-- Placeholder for nominee-specific fields -->
+    <div id="nomineeFields" class="common" style="display: none;">
+      <label>Political Party</label>
+      <input type="text" id="partyName" required />
+
+      <label>Upload Nomination Certificate</label>
+      <input type="file" id="nominationCertificate" required />
+      
+      <label>Candidate District</label>
+      <select id="candidateDistrict" required>
+        <option value="">Select District</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Karur">Madurai</option>
+        <option value="Tiruchirappalli">Tiruchirappalli</option>
+        <option value="Salem">Salem</option>
+        <option value="Tirunelveli">Tirunelveli</option>
+        <option value="Tiruppur">Tiruppur</option>
+        <option value="Erode">Erode</option>
+        <option value="Thoothukudi">Thoothukudi</option>
+        <option value="Vellore">Vellore</option>
+      </select>
+    </div>
+
+    <div class="confimation">
+      <label>Confirmation and Signature</label>
+      <div class="confirm">
+        <input type="checkbox" id="checkbox" required />
+        <h4>I confirm that all the information I provided is truthful and accurate</h4>
+        <label>E-Signature (Type full name)</label>
+        <input type="text" id="signature" required />
+      </div>
+    </div>
+
+    <button class="sumbit" id="btn">Submit Registration</button>
+  </div>
+
+  <footer>
+    © 2024 Election Commission. All rights reserved.
+  </footer>
+
+  <script>
+    // Element selectors
+    const voterFields = document.getElementById("voterFields");
+    const nomineeFields = document.getElementById("nomineeFields");
+    const votingMethod = document.getElementById("votingMethod");
+    const postalGroup = document.getElementById("postalGroup");
+
+    const fullName = document.getElementById("fullName");
+    const dob = document.getElementById("dob");
+    const nationalId = document.getElementById("nationalId");
+    const email = document.getElementById("email");
+    const checkbox = document.getElementById("checkbox");
+    const signature = document.getElementById("signature");
+
+    // Toggle form sections
+    document.querySelectorAll('input[name="userType"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        if (e.target.value === "voter") {
+          voterFields.style.display = "block";
+          nomineeFields.style.display = "none";
+        } else {
+          nomineeFields.style.display = "block";
+          voterFields.style.display = "none";
+        }
+      });
+    });
+
+    // Show postal field if needed
+    votingMethod.addEventListener("change", () => {
+      postalGroup.style.display = votingMethod.value === "Postal" ? "block" : "none";
+    });
+
+    // Validation on submit
+    document.getElementById("btn").addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const selectedType = document.querySelector('input[name="userType"]:checked')?.value;
+      if (!selectedType) return alert("Please select a user type.");
+
+      const formData = {
+        fullName: fullName.value.trim(),
+        dob: dob.value,
+        nationalId: nationalId.value.trim(),
+        email: email.value.trim(),
+        userType: selectedType,
+        signature: signature.value.trim(),
+        confirm: checkbox.checked,
+        votingDistrict: document.getElementById("votingDistrict")?.value.trim(),
+        votingMethod: votingMethod?.value,
+        postalAddress: document.getElementById("postalAddress")?.value.trim(),
+        partyName: document.getElementById("partyName")?.value.trim(),
+        candidateDistrict: document.getElementById("candidateDistrict")?.value.trim()
+      };
+
+      const age = calculateAge(formData.dob);
+      if (!formData.fullName || !formData.dob || !formData.nationalId || !formData.email) {
+        return alert("Please fill all required common fields.");
+      }
+
+      if (!formData.email.includes("@")) {
+        return alert("Please enter a valid email address.");
+      }
+
+      if (selectedType === "voter") {
+        if (age < 18) return alert("Voter must be at least 18 years old.");
+        if (!formData.votingDistrict || !formData.votingMethod) {
+          return alert("Voter section: Please fill all required fields.");
+        }
+        if (formData.votingMethod === "Postal" && !formData.postalAddress) {
+          return alert("Postal address is required for postal voting.");
+        }
+      }
+
+      if (selectedType === "nominee") {
+        if (age < 25) return alert("Nominee must be at least 25 years old.");
+        if (!formData.partyName || document.getElementById("nominationCertificate").files.length === 0 || !formData.candidateDistrict) {
+          return alert("Nominee section: Fill all required fields and upload certificate.");
+        }
+      }
+
+      if (!formData.confirm) return alert("Please confirm the information is truthful.");
+      if (!formData.signature) return alert("Please provide your signature.");
+
+      // Final success
+      alert("✅ Registration submitted successfully!");
+      document.querySelector("form")?.reset();
+      voterFields.style.display = "none";
+      nomineeFields.style.display = "none";
+      postalGroup.style.display = "none";
+    });
+
+    function calculateAge(dobStr) {
+      const today = new Date();
+      const birthDate = new Date(dobStr);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+  </script>
+</body>
+</html>
