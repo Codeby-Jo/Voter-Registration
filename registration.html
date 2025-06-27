@@ -21,7 +21,7 @@
         padding: 16px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
-        background: #ffffff;
+        background: #f5f5f5 transparent; 
     }
     h1 {
         text-align: center;
@@ -31,7 +31,7 @@
         color: #4f46e5;
     }
     .common {
-        background: #f3f4f6;
+        background: #ebeaea;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -41,7 +41,7 @@
         border-radius: 12px;
     }
     .radio-group {
-        background-color: #f3f4f6;
+        background-color: #f1f1f1;
         border-radius: 12px;
         display: flex;                
         justify-content: space-evenly;
@@ -81,7 +81,7 @@
         flex-direction: column;
         align-items: center;
         gap: 12px;
-        background: #f9fafb;
+        background: #ebeaea;
         padding: 16px;
         border: 1px solid #e2e8f0;
         border-radius: 12px;
@@ -91,6 +91,13 @@
         text-align: center;
         color: #374151;
         font-size: 1rem;
+    }
+    #confirm-{
+       font-weight: 600;
+        font-size: 1.125rem;
+        color: #4f46e5;
+        margin-bottom: 12px;
+        padding: 0 8px;
     }
     .sumbit {
         background-color: #4f46e5;
@@ -121,201 +128,204 @@
   <div class="registration">
     <h1>Voter & Nominee Election Registration Form</h1>
 
-    <div class="user">
-      <p>User Type</p>
-    </div>
-    <div class="radio-group">
-      <label><input type="radio" name="userType" value="voter" required> Voter</label>
-      <label><input type="radio" name="userType" value="nominee" required> Nominee</label>
-    </div>
-
-    <p>Common Information</p>
-    <div class="common">
-      <label>Full Name</label>
-      <input type="text" id="fullName" name="fullName" autocomplete="name" required />
-
-      <label>Date Of Birth</label>
-      <input type="date" id="dob" name="dob" required />
-
-      <label>National ID Number</label>
-      <input type="text" id="nationalId" name="nationalId" required />
-
-      <label>Email Address</label>
-      <input type="email" id="email" name="email" required />
-    </div>
-
-    <!-- Placeholder for voter-specific fields -->
-    <div id="voterFields" class="common" style="display: none;">
-      <label>Voting District</label>
-      <select id="votingDistrict" name="votingDistrict" required>
-        <option value="">Select District</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Coimbatore">Coimbatore</option>
-        <option value="Madurai">Madurai</option>
-        <option value="Tiruchirappalli">Tiruchirappalli</option>
-        <option value="Salem">Salem</option>
-        <option value="Tirunelveli">Tirunelveli</option>
-        <option value="Tiruppur">Tiruppur</option>
-        <option value="Erode">Erode</option>
-        <option value="Thoothukudi">Thoothukudi</option>
-        <option value="Vellore">Vellore</option>
-      </select>
-
-      <label>Preferred Voting Method</label>
-      <select id="votingMethod" required>
-        <option value="">Select</option>
-        <option value="In-person">In-person</option>
-        <option value="Postal">Postal</option>
-      </select>
-
-      <div id="postalGroup" style="display: none;">
-        <label>Postal Address</label>
-        <input type="text" id="postalAddress" />
+    <form id="registrationForm">
+      <div class="user">
+        <p>User Type</p>
       </div>
-    </div>
-
-    <!-- Placeholder for nominee-specific fields -->
-    <div id="nomineeFields" class="common" style="display: none;">
-      <label>Political Party</label>
-      <input type="text" id="partyName" required />
-
-      <label>Upload Nomination Certificate</label>
-      <input type="file" id="nominationCertificate" required />
-      
-      <label>Candidate District</label>
-      <select id="candidateDistrict" required>
-        <option value="">Select District</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Coimbatore">Coimbatore</option>
-        <option value="Karur">Madurai</option>
-        <option value="Tiruchirappalli">Tiruchirappalli</option>
-        <option value="Salem">Salem</option>
-        <option value="Tirunelveli">Tirunelveli</option>
-        <option value="Tiruppur">Tiruppur</option>
-        <option value="Erode">Erode</option>
-        <option value="Thoothukudi">Thoothukudi</option>
-        <option value="Vellore">Vellore</option>
-      </select>
-    </div>
-
-    <div class="confimation">
-      <label>Confirmation and Signature</label>
-      <div class="confirm">
-        <input type="checkbox" id="checkbox" required />
-        <h4>I confirm that all the information I provided is truthful and accurate</h4>
-        <label>E-Signature (Type full name)</label>
-        <input type="text" id="signature" required />
+      <div class="radio-group">
+        <label><input type="radio" name="userType" value="voter" required> Voter</label>
+        <label><input type="radio" name="userType" value="nominee" required> Nominee</label>
       </div>
-    </div>
 
-    <button class="sumbit" id="btn">Submit Registration</button>
+      <p>Common Information</p>
+      <div class="common">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" autocomplete="name" required />
+
+        <label for="dob">Date Of Birth</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="nationalId">National ID Number</label>
+        <input type="text" id="nationalId" name="nationalId" pattern="\d{12}" title="Enter 12-digit Aadhaar number" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <!-- Placeholder for voter-specific fields -->
+      <div id="voterFields" class="common" style="display: none;">
+        <label for="votingDistrict">Voting District (Tamil Nadu)</label>
+        <select id="votingDistrict" name="votingDistrict" required>
+          <option value="">Select District</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Coimbatore">Coimbatore</option>
+          <option value="Madurai">Madurai</option>
+          <option value="Tiruchirappalli">Tiruchirappalli</option>
+          <option value="Salem">Salem</option>
+          <option value="Tirunelveli">Tirunelveli</option>
+          <option value="Tiruppur">Tiruppur</option>
+          <option value="Karur">Karur</option>
+          <option value="Thoothukudi">Thoothukudi</option>
+          <option value="Vellore">Vellore</option>
+        </select>
+
+        <label for="votingMethod">Preferred Voting Method</label>
+        <select id="votingMethod" required>
+          <option value="">Select</option>
+          <option value="In-person">In-person</option>
+          <option value="Postal">Postal</option>
+        </select>
+
+        <div id="postalGroup" style="display: none;">
+          <label for="postalAddress">Postal Address</label>
+          <input type="text" id="postalAddress" />
+        </div>
+      </div>
+
+      <!-- Placeholder for nominee-specific fields -->
+      <div id="nomineeFields" class="common" style="display: none;">
+        <label for="partyName">Political Party</label>
+        <input type="text" id="partyName" required />
+
+        <label for="nominationCertificate">Upload Nomination Certificate</label>
+        <input type="file" id="nominationCertificate" required />
+        <label for="supporter">Select Supporter</label>
+        <select id="supporter" required>
+        <option value="">-- Select Supporter --</option>
+        <option value="supporter1">Supporter 1</option>
+        <option value="supporter2">Supporter 2</option>
+        <option value="supporter3">Supporter 3</option>
+        </select>
+      </div>
+      <div class="confimation">
+        <label id="confirm-">Confirmation and Signature</label>
+        <div class="confirm">
+          <input type="checkbox" id="checkbox" required />
+          <h4>I confirm that all the information I provided is truthful and accurate</h4>
+          <label for="signature">E-Signature (Type full name)</label>
+          <input type="text" id="signature" required />
+        </div>
+      </div>
+      <button class="sumbit" id="btn">Submit Registration</button>
+    </form>
   </div>
-
   <footer>
     © 2024 Election Commission. All rights reserved.
   </footer>
 
   <script>
-    // Element selectors
-    const voterFields = document.getElementById("voterFields");
-    const nomineeFields = document.getElementById("nomineeFields");
-    const votingMethod = document.getElementById("votingMethod");
-    const postalGroup = document.getElementById("postalGroup");
-
-    const fullName = document.getElementById("fullName");
-    const dob = document.getElementById("dob");
-    const nationalId = document.getElementById("nationalId");
-    const email = document.getElementById("email");
-    const checkbox = document.getElementById("checkbox");
-    const signature = document.getElementById("signature");
-
-    // Toggle form sections
-    document.querySelectorAll('input[name="userType"]').forEach((input) => {
-      input.addEventListener("change", (e) => {
-        if (e.target.value === "voter") {
-          voterFields.style.display = "block";
-          nomineeFields.style.display = "none";
-        } else {
-          nomineeFields.style.display = "block";
-          voterFields.style.display = "none";
-        }
-      });
+  const voterFields = document.getElementById("voterFields");
+  const nomineeFields = document.getElementById("nomineeFields");
+  const votingMethod = document.getElementById("votingMethod");
+  const postalGroup = document.getElementById("postalGroup");
+// Toggle form sections based on user type
+  document.querySelectorAll('input[name="userType"]').forEach(input => {
+    input.addEventListener("change", e => {
+      const userType = e.target.value;
+      voterFields.style.display = userType === "voter" ? "block" : "none";
+      nomineeFields.style.display = userType === "nominee" ? "block" : "none";
     });
-
-    // Show postal field if needed
-    votingMethod.addEventListener("change", () => {
-      postalGroup.style.display = votingMethod.value === "Postal" ? "block" : "none";
-    });
-
-    // Validation on submit
-    document.getElementById("btn").addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const selectedType = document.querySelector('input[name="userType"]:checked')?.value;
-      if (!selectedType) return alert("Please select a user type.");
-
-      const formData = {
-        fullName: fullName.value.trim(),
-        dob: dob.value,
-        nationalId: nationalId.value.trim(),
-        email: email.value.trim(),
-        userType: selectedType,
-        signature: signature.value.trim(),
-        confirm: checkbox.checked,
-        votingDistrict: document.getElementById("votingDistrict")?.value.trim(),
-        votingMethod: votingMethod?.value,
-        postalAddress: document.getElementById("postalAddress")?.value.trim(),
-        partyName: document.getElementById("partyName")?.value.trim(),
-        candidateDistrict: document.getElementById("candidateDistrict")?.value.trim()
-      };
-
-      const age = calculateAge(formData.dob);
-      if (!formData.fullName || !formData.dob || !formData.nationalId || !formData.email) {
-        return alert("Please fill all required common fields.");
-      }
-
-      if (!formData.email.includes("@")) {
-        return alert("Please enter a valid email address.");
-      }
-
-      if (selectedType === "voter") {
-        if (age < 18) return alert("Voter must be at least 18 years old.");
-        if (!formData.votingDistrict || !formData.votingMethod) {
-          return alert("Voter section: Please fill all required fields.");
-        }
-        if (formData.votingMethod === "Postal" && !formData.postalAddress) {
-          return alert("Postal address is required for postal voting.");
-        }
-      }
-
-      if (selectedType === "nominee") {
-        if (age < 25) return alert("Nominee must be at least 25 years old.");
-        if (!formData.partyName || document.getElementById("nominationCertificate").files.length === 0 || !formData.candidateDistrict) {
-          return alert("Nominee section: Fill all required fields and upload certificate.");
-        }
-      }
-
-      if (!formData.confirm) return alert("Please confirm the information is truthful.");
-      if (!formData.signature) return alert("Please provide your signature.");
-
-      // Final success
-      alert("✅ Registration submitted successfully!");
-      document.querySelector("form")?.reset();
-      voterFields.style.display = "none";
-      nomineeFields.style.display = "none";
-      postalGroup.style.display = "none";
-    });
-
-    function calculateAge(dobStr) {
-      const today = new Date();
-      const birthDate = new Date(dobStr);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      return age;
+  });
+  // Show postal address if postal method is selected
+  votingMethod.addEventListener("change", () => {
+    postalGroup.style.display = votingMethod.value === "Postal" ? "block" : "none";
+  });
+  // Submit and validate
+  document.getElementById("btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    const formElement = document.getElementById("registrationForm");
+    const rawForm = new FormData(formElement);
+    const userType = rawForm.get("userType");
+    if (!userType) {
+      return alert("Please select a user type.");
     }
-  </script>
+
+    const formData = {
+      fullName: rawForm.get("fullName")?.trim(),
+      dob: rawForm.get("dob"),
+      nationalId: rawForm.get("nationalId")?.trim(),
+      email: rawForm.get("email")?.trim(),
+      userType,
+      confirm: document.getElementById("checkbox").checked,
+      signature: document.getElementById("signature").value.trim(),
+      votingDistrict: rawForm.get("votingDistrict")?.trim(),
+      votingMethod: votingMethod?.value,
+      postalAddress: document.getElementById("postalAddress").value.trim(),
+      partyName: document.getElementById("partyName").value.trim(),
+      nominationCertificate: document.getElementById("nominationCertificate"),
+      supporter: document.getElementById("supporter").value,
+    };
+
+    // Common field validation
+    if (!formData.fullName || !formData.dob || !formData.nationalId || !formData.email) {
+      return alert("Please fill all required common fields.");
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      return alert("Please enter a valid email format.");
+    }
+
+    const age = calculateAge(formData.dob);
+
+    if (userType === "voter") {
+      if (age < 18) return alert("Voter must be at least 18 years old.");
+      if (!formData.votingDistrict || !formData.votingMethod) {
+        return alert("Please select district and voting method.");
+      }
+      if (formData.votingMethod === "Postal" && !formData.postalAddress) {
+        return alert("Postal address is required for postal voting.");
+      }
+    }
+
+    if (userType === "nominee") {
+      if (age < 25) return alert("Nominee must be at least 25 years old.");
+      if (!formData.partyName || !formData.supporter) {
+        return alert("Please provide party name and select a supporter.");
+      }
+      if (!formData.nominationCertificate.files.length) {
+        return alert("Please upload a nomination certificate.");
+      }
+    }
+
+    if (!formData.confirm) return alert("Please confirm your information.");
+    if (!formData.signature) return alert("Signature is required.");
+
+    alert("✅ Registration submitted successfully!");
+    formElement.reset();
+    voterFields.style.display = "none";
+    nomineeFields.style.display = "none";
+    postalGroup.style.display = "none";
+  });
+
+  function calculateAge(dobStr) {
+    const today = new Date();
+    const birthDate = new Date(dobStr);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+      function resetForm() {
+    fullName.value = '';
+    dob.value = '';
+    nationalId.value = '';
+    email.value = '';
+    checkbox.checked = false;
+    signature.value = '';
+    votingMethod.value = '';
+    postalGroup.style.display = 'none';
+    voterFields.style.display = 'none';
+    nomineeFields.style.display = 'none';
+    document.querySelectorAll('input[name="userType"]').forEach((input) => {
+      input.checked = false;
+    });
+    document.getElementById("postalAddress").value = '';
+    document.getElementById("partyName").value = '';
+    document.getElementById("candidateDistrict").value = '';
+    nominationCertificate.value = '';
+  }
+</script>
 </body>
 </html>
